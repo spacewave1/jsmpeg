@@ -11,10 +11,18 @@
 	
 </head>
 <body>
-	<canvas id="video-canvas"></canvas>
+	<canvas id="video-canvas-1"></canvas>
+	<canvas id="video-canvas-2"></canvas>
+	<canvas id="video-canvas-3"></canvas>
 	<script type="text/javascript" src="jsmpeg.min.js"></script>
 	<script type="text/javascript">
-		var canvas = document.getElementById('video-canvas');
+		var canvas = document.getElementById('video-canvas-1');
+		var url = 'ws://'+document.location.hostname+':8082/';
+		var player = new JSMpeg.Player(url, {canvas: canvas});
+		var canvas = document.getElementById('video-canvas-2');
+		var url = 'ws://'+document.location.hostname+':8082/';
+		var player = new JSMpeg.Player(url, {canvas: canvas});
+		var canvas = document.getElementById('video-canvas-3');
 		var url = 'ws://'+document.location.hostname+':8082/';
 		var player = new JSMpeg.Player(url, {canvas: canvas});
 	</script>
