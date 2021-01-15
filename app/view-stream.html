@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSMpeg Stream Client</title>
+	<style type="text/css">
+		html, body {
+			background-color: #111;
+			text-align: center;
+		}
+	</style>
+	
+</head>
+<body>
+	<script type="text/javascript" src="vars.js"></script> 
+	<script type="text/javascript" src="jsmpeg.min.js"></script>
+	<script type="text/javascript">
+		for (var i = 0; i < streams.length; i++) {
+			document.write('<canvas id="video-canvas-'+ i +'"></canvas>')
+			var canvas = document.getElementById('video-canvas-' + i);
+			var url = streams[i];
+			var player = new JSMpeg.Player(url, {canvas: canvas});	
+		}
+	</script>
+</body>
+</html>

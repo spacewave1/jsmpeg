@@ -1,0 +1,39 @@
+version : '3'
+services :
+  app:
+    build: './app'
+    volumes: 
+      - ./app:/usr/app/
+    ports:
+      - '8080:8080'
+      - '8082:8082'
+      - '8084:8084'
+
+  ffmpeg-1:
+    image: alpine
+    depends_on:
+      - app
+    volumes:
+      - ./ffmpeg:/usr/ffmpeg
+    devices:
+      - /dev/video0:/dev/video0
+    environment:
+      - STREAM_AT=172.21.0.2:8081/supersecret
+      - DEVICE_PATH=/dev/video0
+    command: sh /usr/ffmpeg/start.sh
+    ports:
+      - '8081:8081'
+  ffmpeg-2:
+    image: alpine
+    depends_on:
+      - app
+    volumes:
+      - ./ffmpeg:/usr/ffmpeg
+    devices:
+      - /dev/video2:/dev/video2
+    environment:
+      - STREAM_AT=172.21.0.2:8083/supersecret
+      - DEVICE_PATH=/dev/video2
+    command: sh /usr/ffmpeg/start.sh
+    ports:
+      - '8083:8083'

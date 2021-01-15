@@ -1,0 +1,1 @@
+const numberOfStreams = 2
